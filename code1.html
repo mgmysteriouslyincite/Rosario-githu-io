@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mary Grace Rosario</title>
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .content-wrapper {
+        display: flex;
+        margin-right: 20px; /* Add space between content wrappers */
+    }
+    .message-box-container {
+        display: flex; 
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center items horizontally */
+    }
+    .message-box {
+        position: relative;
+        border: 2px solid #000;
+        border-radius: 10px; /* Add border-radius to soften the edges */
+        padding: 20px;
+        width: 300px;
+        height: 625px; /* Adjusted height to accommodate additional content */
+        background-color: #ccd0d2;
+        text-align: center; /* Center-align text */
+        margin-bottom: 20px; /* Spacing between message boxes */
+    }
+    .image-box {
+        position: absolute;
+        top: -120px; 
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: calc(100% - 40px); /* Subtract padding */
+        max-height: calc(100% - 40px);
+        z-index: 1; /* Ensure the image appears above the rectangle */
+    }
+    .text-box {
+        position: relative;
+        z-index: 2; /* Ensure text appears above the image */
+        margin-top: 180px; /* Adjust margin to move text down */
+    }
+    .small-rectangle {
+        display: inline-block;
+        padding: 1px 30px;
+        background-color: #ccd0d2;
+        border: 1px solid #000;
+        border-radius: 5px;
+    }
+    .social-media-container {
+        margin-top: 10px; /* Adjust spacing */
+    }
+    .social-media-box {
+        display: inline-block;
+        padding: 5px;
+        margin: 0 5px; /* Adjust spacing between boxes */
+        background-color: #ccd0d2;
+        border: 1px solid #000;
+        border-radius: 5px;
+    }
+    .social-media-logo {
+        width: 40px; 
+    }
+    .contact-info {
+        text-align: left;
+        margin-top: 20px; 
+        padding: 10px;
+        border: 2px solid #000;
+        border-radius: 5px;
+    }
+    .contact-info p {
+        margin: 0;
+        padding-bottom: 10px; /* Adjust spacing between paragraphs */
+        border-bottom: 1px solid #000; /* Add line between paragraphs */
+    }
+    .additional-rectangle {
+        border-radius: 10px; /* Add border-radius to soften the edges */
+        width: 600px; 
+        height: 100px; 
+        background-color: #ccd0d2;
+        border: 2px solid #000;
+        margin-left: 180px; 
+         display: flex;
+        justify-content: center; 
+        align-items: center; 
+    }
+    .additional-img {
+        margin: 20px; 
+        max-width: calc(100% - 40px); 
+        max-height: calc(100% - 40px); 
+    }
+    #message-box-1{
+        display: none; /* Initially hide all message boxes */
+        background-color: #ccd0d2;
+        border: 2px solid #000;
+        border-radius: 10px; 
+        padding: 20px;
+        width: 800px;
+        height: 450px;
+        text-align: left;
+        position: absolute;
+        margin-left: -375px;
+    }
+     #message-box-1 h2 {
+        font-size: 36px; /* Adjust the font size as needed */
+        margin-top: 10px; /* Adjust margin above the header */
+        margin-bottom: 10px; /* Adjust margin below the header */
+    }
+    #message-box-2{
+        display: none; 
+        background-color: #ccd0d2;
+        border: 2px solid #000;
+        border-radius: 10px; 
+        padding: 20px;
+        width: 700px;
+        height: 500px;
+        text-align: left;
+        position: absolute;
+        margin-left: -375px;
+    }
+    #message-box-2 h3 {
+        font-size: 36px; 
+        margin-top: 10px; 
+        margin-bottom: 10px; 
+    }
+    #message-box-3{
+        display: none; 
+        background-color: #ccd0d2;
+        border: 2px solid #000;
+        border-radius: 10px;
+        padding: 20px;
+        width: 700px;
+        height: 350px;
+        text-align: left;
+        position: absolute;
+        margin-left: -375px;
+    }
+    #message-box-3 h4 {
+        font-size: 36px; 
+        margin-top: 10px; 
+        margin-bottom: 10px; 
+    }
+    #message-box-4{
+        display: none; 
+        background-color: #ccd0d2;
+        border: 2px solid #000;
+        border-radius: 10px;
+        padding: 20px;
+        width: 700px;
+        height: 400px;
+        text-align: left;
+        position: absolute;
+        margin-left: -375px;
+    }
+    #message-box-4 h5 {
+        font-size: 36px; 
+        margin-top: 10px; 
+        margin-bottom: 10px; 
+    }
+    #message-box-5{
+        display: none; 
+        background-color: #ccd0d2;
+        border: 2px solid #000;
+        border-radius: 10px; 
+        padding: 20px;
+        width: 700px;
+        height: 250px;
+        text-align: left;
+        position: absolute;
+        margin-left: -375px;
+    }
+    #message-box-5 h6 {
+        font-size: 36px; 
+        margin-top: 10px; 
+        margin-bottom: 10px; 
+    }
+    .skill-container {
+    display: flex;
+    justify-content: space-between; /* Distribute items evenly along the main axis */
+    }
+    .skill {
+    text-align: center;
+    flex-basis: 20%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; 
+    }
+    .skill p {
+    margin-top: 5px; /* Adjust spacing between the image and label */
+    }
+    .skill img {
+    width: 60%; /* Reduce the width of the images */
+    max-height: 100px; /* Set a maximum height for the images */
+    max-height: 100px;
+    }
+    .education {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    margin-top: 20px; 
+    }
+    .education-box {
+    background-color: #ccd0d2;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 15px;
+    width: calc(50% - 10px); 
+    box-sizing: border-box; 
+    margin-bottom: 20px; 
+    }
+    .education-item {
+    margin-bottom: 15px;
+    }
+    .education-info {
+    font-size: 16px;
+    line-height: 1.6;
+    }
+    .progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    .progress-item {
+    margin-bottom: 10px;
+    }
+    .progress-label {
+    display: flex;
+    justify-content: space-between;
+    width: 300px; /* Adjust the width of the progress label container */
+    margin-bottom: 5px;
+    }
+    .percentage {
+    font-weight: bold;
+    }
+    progress {
+    width: 300px; /* Adjust the width of the progress bar */
+    height: 30px; /* Adjust the height of the progress bar */
+    }
+    .picture-boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 80px;
+    }
+    .picture-box {
+    width: calc(33.33% - 10px);
+    box-sizing: border-box;
+    text-align: center;
+    }
+    .picture-box img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    }
+    .picture-box p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    }
+    .picture-box:nth-child(2) {
+    margin-right: 100px; 
+    }
+    body {
+    background-image: url('bg.avif'); /* Replace 'your-background-image.jpg' with the path to your background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+}
+
+
+
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="content-wrapper">
+        <div class="message-box-container">
+            <div class="message-box">
+                <img class="image-box" src="mg.png" alt="Your Image">
+                <div class="text-box">
+                    <p>Mary Grace G. Rosario</p>
+                    <div class="small-rectangle">
+                        <p>IT Student</p>
+                    </div>
+                    <div class="social-media-container">
+                        <div class="social-media-box">
+                            <a href="https://www.facebook.com/marygrace.rosario.180"><img class="social-media-logo" src="fb.png" alt="Social Media Logo 1"></a>
+                        </div>
+                        <div class="social-media-box">
+                            <a href="https://www.instagram.com/mryygrcc?igsh=d25jdWJxbzB6MGhj"><img class="social-media-logo" src="ig.png" alt="Social Media Logo 2"></a>
+                        </div>
+                        <div class="social-media-box">
+                            <a href="link_to_social_media_page_3"><img class="social-media-logo" src="twitter.png" alt="Social Media Logo 3"></a>
+                        </div>
+                        <div class="social-media-box">
+                            <a href="https://www.linkedin.com/in/mary-grace-rosario-6727212b6/"><img class="social-media-logo" src="linkedin.png" alt="Social Media Logo 4"></a>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <p>Phone:<br>09933796874</p>
+                        <p>Personal Email:<br>marygracerosario287@gmail.com</p>
+                        <p>Institutional Email:P<br>0322-1951@lspu.edu.ph</p>
+                        <p>Location:<br>Lalig, Tiaong Quezon</p>
+                        <p>Language Spoken:<br>Filipino/English</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="additional-rectangle">
+            <!-- Six clickable images -->
+            <img class="additional-img" src="about.png" alt="Icon 1" data-message-id="message-box-1">
+            <img class="additional-img" src="educ.png" alt="Icon 2" data-message-id="message-box-2">
+            <img class="additional-img" src="skills.png" alt="Icon 3" data-message-id="message-box-3">
+            <img class="additional-img" src="project.png" alt="Icon 4" data-message-id="message-box-4">
+            <img class="additional-img" src="resume.png" alt="Icon 5" data-message-id="message-box-5">
+        </div>
+    </div>
+</div>
+
+<!-- Message Box 1 -->
+<div id="message-box-1" class="message-box">
+    <!-- Content of message box 1 -->
+    <h2>Hi! I'm Mary Grace G. Rosario</h2>
+    <p>Greetings! I'm a 20-year-old Information Technology student deeply immersed in the captivating world of web design at Laguna State Polytechnic University San Pablo City Campus. As a second-year undergrad, I'm fueled by my academic journey to master web development and leave an indelible mark in the digital landscape. Embarking on a journey in web design, I'm fueled by a deep commitment to innovation and a passion for crafting user-centric experiences. Recognizing that mastery in web development is a long-term endeavor, I am prepared to embrace the challenges and opportunities that lie ahead, knowing that each step forward brings me closer to realizing my goals in the dynamic world of digital design. Join me on my journey to craft digital marvels that transcend expectations and inspire. Together, let's reimagine the web, one line of code at a time.</p>
+
+    <!-- Second Section -->
+    <hr> <!-- Line to separate sections -->
+    <div>
+        <h3>Interests</h3>
+        <div class="skill-container">
+            <div class="skill">
+                <img src="music.png" alt="Pic 1">
+                <p>Music</p>
+            </div>
+            <div class="skill">
+                <img src="books.png" alt="Pic 2">
+                <p>Reading</p>
+            </div>
+            <div class="skill">
+                <img src="arts.png" alt="Pic 3">
+                <p>Arts</p>
+            </div>
+            <div class="skill">
+                <img src="lang.png" alt="Pic 4">
+                <p>Learning New Languages</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Message Box 2 -->
+<div id="message-box-2" class="message-box">
+    <!-- Content of message box 2 -->
+    <h3>Educational Background</h3>
+    <div class="education">
+        <div class="education-box">
+            <div class="education-item">
+                <div class="education-info">
+                    <strong>Elementary: Doña Conception H. Umali Elementary School</strong><br>
+                    <span>Year Graduated: 2009-2015</span><br>
+                    <span>School Address: Sitio Bakahan Brgy. Lalig Tiaong, Quezon</span>
+                </div>
+            </div>
+        </div>
+        <div class="education-box">
+            <div class="education-item">
+                <div class="education-info">
+                    <strong>Junior High School: Lalig National High School</strong><br>
+                    <span>Year Graduated: 2015-2019</span><br>
+                    <span>School Address: Sitio Bakahan Brgy. Lalig Tiaong, Quezon</span>
+                </div>
+            </div>
+        </div>
+        <div class="education-box">
+            <div class="education-item">
+                <div class="education-info">
+                    <strong>Senior High School: Recto Memorial National High School</strong><br>
+                    <span>Year Graduated: SY: 2019-2021</span><br>
+                    <span>School Address: Brgy. Quipot Tiaong, Quezon</span>
+                </div>
+            </div>
+        </div>
+        <div class="education-box">
+            <div class="education-item">
+                <div class="education-info">
+                    <strong>College: Laguna State Polytechnic University - San Pablo City Campus</strong><br>
+                    <span>Major: Bachelor of Science in Information Technology</span><br>
+                    <span>Expected Graduation Year: 2026</span><br>
+                    <span>School Address: Brgy. Del Remedio San Pablo City Laguna</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Message Box 3 -->
+<div id="message-box-3" class="message-box">
+    <!-- Content of message box 3 -->
+    <h4>Skills</h4>
+    <div class="progress-container">
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>Computer Literate</span>
+                <span class="percentage">100%</span>
+            </div>
+            <progress max="100" value="100"></progress>
+        </div>
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>Customer Service</span>
+                <span class="percentage">100%</span>
+            </div>
+            <progress max="100" value="100"></progress>
+        </div>
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>Web Development</span>
+                <span class="percentage">50%</span>
+            </div>
+            <progress max="100" value="50"></progress>
+        </div>
+        <div class="progress-item">
+            <div class="progress-label">
+                <span>Web Design</span>
+                <span class="percentage">50%</span>
+            </div>
+            <progress max="100" value="50"></progress>     
+    </div>
+    </div>
+</div>
+
+
+<!-- Message Box 4 -->
+<div id="message-box-4" class="message-box">
+    <!-- Content of message box 4 -->
+    <h5>Projects</h5>
+
+
+    <!-- Picture boxes with labels -->
+    <div class="picture-boxes">
+        <div class="picture-box">
+            <img src="lib.png" alt="Picture 1">
+            <p>Welcome to our library database system! This platform offers a comprehensive array of features designed to enhance your library experience. With functionalities including adding, deleting, viewing, and searching for books, managing your library collection has never been easier. </p>
+        </div>
+        <div class="picture-box">
+            <img src="game.png" alt="Picture 3">
+            <p>Welcome to our game, meticulously crafted with a diverse range of data structures and algorithms. From trees to lists, hashsets to arrays, and many more, our game leverages a multitude of computational techniques to deliver an immersive and engaging experience. Each element of the game is carefully designed to showcase the versatility and power of these fundamental concepts.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Message Box 5 -->
+<div id="message-box-5" class="message-box">
+    <h6>Work Experience</h6>
+    <div class="work-experience">
+        <div class="work-item">
+            <h4 style="font-size: 24px;">Tutor</h4>
+            <p>Year: 2020-2021</p>
+            <p>Amidst the COVID-19 pandemic, I assumed the role of a private tutor for elementary and high school students, endeavoring to mitigate the educational challenges brought forth by remote learning. Commencing from March 2020, my responsibilities have encompassed the provision of individualized academic assistance to students across diverse subjects, including Mathematics, English, Music and Arts, Science, and History.</p>
+        </div>
+    
+</div>
+
+
+<script>
+    // Get the additional rectangle
+    const additionalRectangle = document.querySelector('.additional-rectangle');
+
+    // Track the currently open message box
+    let currentMessageBox = null;
+
+    // Add event listener for clicks on the additional images
+    additionalRectangle.addEventListener('click', (event) => {
+        if (event.target.classList.contains('additional-img')) {
+            // Close the currently open message box if exists
+            if (currentMessageBox) {
+                currentMessageBox.style.display = 'none';
+            }
+
+            // Determine the ID of the message box based on the clicked image
+            let messageId = event.target.getAttribute('data-message-id');
+
+            // Get the corresponding message box
+            let newMessageBox = document.getElementById(messageId);
+
+            // Position the message box centered below the additional rectangle
+            const additionalRectangleBounds = additionalRectangle.getBoundingClientRect();
+            const additionalRectangleCenterX = additionalRectangleBounds.left + additionalRectangleBounds.width / 2;
+            const newMessageBoxWidth = newMessageBox.offsetWidth;
+            newMessageBox.style.left = additionalRectangleCenterX - newMessageBoxWidth / 2 + 'px';
+            newMessageBox.style.top = additionalRectangleBounds.bottom + 'px';
+            // Display the message box
+            newMessageBox.style.display = 'block';
+            newMessageBox.style.marginTop = '20px';
+
+            // Update the current message box
+            currentMessageBox = newMessageBox;
+        }
+    });
+</script>
+
+
+
+
+
+
+</body>
+</html>
